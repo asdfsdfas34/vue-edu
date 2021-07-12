@@ -1,9 +1,6 @@
 # vue-til
 
 ## Vue 강의 기록
-```
-npm install
-```
 
 ### Day1
 ```
