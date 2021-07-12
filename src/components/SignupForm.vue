@@ -13,7 +13,9 @@
       <label for="nickname">nickname : </label>
       <input id="nickname" type="text" v-model="nickname1" />
     </div>
-    <button type="submit">회원가입</button>
+    <button :disabled="!isEmailvalid || !password || !nickname" type="submit">
+      회원가입
+    </button>
 
     <h1>{{ logMessage }}</h1>
   </form>
@@ -21,23 +23,31 @@
 
 <script>
 import { registerUser } from "@/api/index.js";
+import { validateEmail } from "@/utils/validation.js";
 
 export default {
   data() {
     return {
-      username1: "",
-      password1: "",
-      nickname1: "",
+      username: "",
+      password: "",
+      nickname: "",
       logMessage: "",
     };
   },
+
+  computed: {
+    isEmailvalid() {
+      return validateEmail(this.username);
+    },
+  },
+
   methods: {
     async submitForm() {
       console.log("폼제출");
       const userData = {
-        username: this.username1,
-        password: this.password1,
-        nickname: this.nickname1,
+        username: this.username,
+        password: this.password,
+        nickname: this.nickname,
       };
 
       const response = await registerUser(userData);
@@ -49,9 +59,9 @@ export default {
       //return response.status;
     },
     initForm() {
-      this.username1 = "";
-      this.password1 = "";
-      this.nickname1 = "";
+      this.username = "";
+      this.password = "";
+      this.nickname = "";
     },
   },
 };

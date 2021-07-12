@@ -25,11 +25,16 @@ export default new VueRouter({
             component: () => import('@/views/SignupPage.vue')
         },
         {
+            paht: '/main',
+            component: () => import('@/views/MainPage.vue')
+        },
+        {
             //callback 라우터
             //상위에 할당된 url 이외에 모든 경로를 아래 컴포넌트로 리턴
             path: '*',
             component: () => import('@/views/NotFoundPage.vue')
-        }
+        },
+
 
     ]
 });
