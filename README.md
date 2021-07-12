@@ -1,29 +1,21 @@
 # vue-til
 
-## Project setup
+## Vue 강의 기록
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### Day1
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+### Day
 ```
 npm run build
 ```
 
-### Run your unit tests
+### Day3
 ```
 npm run test:unit
 ```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
