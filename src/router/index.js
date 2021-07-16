@@ -25,7 +25,7 @@ export default new VueRouter({
             component: () => import('@/views/SignupPage.vue')
         },
         {
-            paht: '/main',
+            path: '/main',
             component: () => import('@/views/MainPage.vue')
         },
         {

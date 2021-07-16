@@ -1,16 +1,30 @@
 <template>
-  <form @submit.prevent="submitForm">
-    <div>
-      <label for="username"></label>
-      <input id="username" type="text" v-model="username" />
+  <div class="contents">
+    <div class="form-wrapper form-wrapper-sm">
+      <form @submit.prevent="submitForm" class="form">
+        <div>
+          <label for="username">id:</label>
+          <input id="username" type="text" v-model="username" />
+          <p class="validation-text">
+            <span class="warning" v-if="!isUsernameValid && username">
+              Please enter an email address
+            </span>
+          </p>
+        </div>
+        <div>
+          <label for="password">pw:</label>
+          <input id="password" type="text" v-model="password" />
+        </div>
+        <button
+          :disabled="!isUsernameValid || !password"
+          type="submit"
+          class="btn"
+        >
+          로그인
+        </button>
+      </form>
     </div>
-    <div>
-      <label for="password"></label>
-      <input id="password" type="text" v-model="password" />
-    </div>
-    <!-- v-bind:disabled >> :disabled  -->
-    <button :disabled="!isUsernameValid || !password">로그인</button>
-  </form>
+  </div>
 </template>
 
 <script>
@@ -41,7 +55,11 @@ export default {
         };
 
         const { data } = await loginUser(userData);
-        console.log(data.user.username + "님 환영합니다.");
+
+        //mutation 호출
+        //store 에 토큰 저장
+        this.$store.commit("setToken", data.token);
+        this.$store.commit("setUsername", data.user.username);
 
         //자바스크립트 레벨에서 router 이동
         this.$router.push("/main");
@@ -61,4 +79,7 @@ export default {
 </script>
 
 <style>
+.btn {
+  color: white;
+}
 </style>
